@@ -158,11 +158,11 @@ class Project:
 
         htmlfileloc = self.fileloc + '/generated_reports/HTML Reports/'
 
-        with open((htmlfileloc + 'Project_activity_summary_report.json'), 'w') as htmfile:
+        with open((htmlfileloc + 'Project_activity_summary_report.html'), 'w') as htmfile:
             report_activity_summary = self.calculate_activity_summary().to_html()
             htmfile.write(f'<h1>{self.project_name}</h1>')
             htmfile.write(report_activity_summary)
-        with open((htmlfileloc + 'Project_employee_summary_report.json'), 'w') as htmfile:
+        with open((htmlfileloc + 'Project_employee_summary_report.html'), 'w') as htmfile:
             report_employee_summary = ((self.calculate_employee_summary().set_index(pd.Index(['Hours Spent']))).transpose()).to_html()
             htmfile.write(f'<h1>{self.project_name}</h1>')
             htmfile.write(report_employee_summary)
@@ -315,11 +315,11 @@ class Employee:
 
         htmlfileloc = self.fileloc + '/generated_reports/HTML Reports/'
 
-        with open((htmlfileloc + 'Employee_activity_summary_report.json'), 'w') as htmfile:
+        with open((htmlfileloc + 'Employee_activity_summary_report.html'), 'w') as htmfile:
             report_activity_summary = ((((pd.DataFrame.from_dict(self.calculate_activity_summary(), orient='index')).transpose()).set_index(pd.Index(['Hours Spent']))).transpose()).to_html()
             htmfile.write(f'<h1>{self.employee_name}-Tag Vs Hours </h1>')
             htmfile.write(report_activity_summary)
-        with open((htmlfileloc + 'Employee_project_summary_report.json'),'w') as htmfile:
+        with open((htmlfileloc + 'Employee_project_summary_report.html'),'w') as htmfile:
             report_project_summary = ((((pd.DataFrame.from_dict(self.calculate_project_summary(), orient='index')).transpose()).set_index(pd.Index(['Hours Spent']))).transpose()).to_html()
             htmfile.write(f'<h1>{self.employee_name}-Project vs Hours </h1>')
             htmfile.write(report_project_summary)
